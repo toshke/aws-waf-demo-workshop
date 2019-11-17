@@ -93,10 +93,20 @@ To verify that API was actually hit, go to [CloudWatch metrics home page first](
 
 As we want to see API Gateway metrics, select (AllMetrics/ApiGateway/ByApiName).
 Like on screenshot below, you should see "CloudToolsMeetup-DEC19-WAF" 
-Select "Count" for MetricName as we are interested only in total number of requests,
+Select "Count" for MetricName as we are interested only in total number of requests (screenshot1 below),
 then head of to "Graphed Metrics Tab". Selecting "SUM" for statistics like on 
-screenshot #2 should display total number of requests, which in this case
-should be 500. 
+screenshot2 should display total number of requests, which in this case
+should be 500. (screenshot3)
+
+#### Select Count for Metric Name for Workshop API Gateway
+<img width="1157" alt="Screenshot 2019-11-17 19 38 51" src="https://user-images.githubusercontent.com/1170273/69005193-93464880-0972-11ea-8219-eaf3c11c68d5.png">
+
+
+#### Select SUM as statistic name so TOTAL number of requests are visible
+<img width="1119" alt="Screenshot 2019-11-17 19 39 01" src="https://user-images.githubusercontent.com/1170273/69005192-917c8500-0972-11ea-98c4-583704eb6cfd.png">
+
+#### You should see 500 API Requests
+<img width="246" alt="Screenshot 2019-11-17 19 39 10" src="https://user-images.githubusercontent.com/1170273/69005190-904b5800-0972-11ea-9723-45a63479e3b7.png">
 
 
 #### Exerices for advanced users
