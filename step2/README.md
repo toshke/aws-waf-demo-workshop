@@ -1,81 +1,108 @@
 ## Load test your API
 
+In this step you will be installing Goad, Go-written, AWS Lambda-powered 
+website load testing tool. Once the tool is installed, you will use it
+to put some load onto the serverless API endpoint created in previous step. 
+As end result, you'll look at some CloudWatch metrics showing the results of load
+tesing. 
+
+
 ### Install GoAd
 
 This tutorial assumes you are running Cloud9 w/Amazon Linux2, however
 if you are running this tutorial from Mac or Windows, head to 
 [GOAS website for download url](https://goad.io/#install)
 
+Installing GOAD on Linux (Cloud9) - copy & Paste commands below into
+your Cloud 9 instance
 
 ```
-$ pip install beeswithmachineguns
+$ wget https://github.com/goadapp/goad/releases/download/2.0.4/goad-linux-x86-64.zip && \
+      unzip goad-linux-x86-64.zip && \
+      sudo mv goad /usr/bin/goad && \
+      goad -h
 ```
 
-### Generate an KeyPair for BeesToUse
-
-Generate a keypair using ssh-keygen utility. Use empty String (no passphrase)
-when prompted for one, for the sake of the workshop simplicity. Bees use this
-ssh key to spin up ec2 instances
+You should see output like below, verifying that downloaded binary is compatible
+with your OS/Cpu:
 
 ```
-$ ssh-keygen -f ~/.ssh/beeskey.pem
-$ aws ec2 import-key-pair --key-name beeskey --public-key-material file://~/.ssh/beeskey.pem.pub --region us-east-1
-```
-### Create SG for bees
+usage: goad [<flags>] [<url>]
 
-Security groups work on AWS a little bit like traditional firewall - they
-block any unwanted traffic. When new security group is created, it will by
-default block all traffic, and required ports are whitelisted thereafter.
-As bees work by issuing commands via SSH on port 22,  they will need security
-group with port 22 open to the web. Use command below to create one
+An AWS Lambda powered load testing tool
 
-```
-$ VPC_ID=$(aws ec2 describe-vpcs --query Vpcs[].VpcId --output text --region us-east-1)
-$ aws ec2 create-security-group --region us-east-1 --vpc-id $VPC_ID --group-name beesgroup --description 'SG For Bees w/MachineGuns'
-```
+Flags:
+  -h, --help                     Display usage information (this message)
+  -n, --requests=1000            Number of requests to perform. Set to 0 in combination with a specified timelimit allows
+                                 for unlimited requests for the specified time.
+  -c, --concurrency=10           Number of multiple requests to make at a time
+  -t, --timelimit=3600           Seconds to max. to spend on benchmarking
+  -s, --timeout=15               Seconds to max. wait for each response
+  -H, --header=HEADER ...        Add Arbitrary header line, eg. 'Accept-Encoding: gzip' (repeatable)
+  -m, --method="GET"             HTTP method
+      --body=BODY                HTTP request body
+      --json-output=JSON-OUTPUT  Optional path to file for JSON result storage
+      --region=us-east-1... ...  AWS regions to run in. Repeat flag to run in more then one region. (repeatable)
+      --run-docker               execute in docker container instead of aws lambda
+      --create-ini-template      create sample configuration file "goad.ini" in current working directory
+  -V, --version                  Show application version.
 
-You should see output such as
-```
-{
-    "GroupId": "sg-02b380c13a3765279"
-}
-```
-
-Allow for inbound connections on ssh port
-
-```
-aws ec2 authorize-security-group-ingress --region us-east-1 --group-name beesgroup --port 22  --protocol tcp --cidr 0.0.0.0/0
+Args:
+  [<url>]  [http[s]://]hostname[:port]/path optional if defined in goad.ini
 ```
 
-GroupId is not relevant, as security group is given to bees via name
 
-### Spin up 4 bees
+### Load testing API
 
-As beeswithmachinegunes is relatively old tool (there has been no update in 2 years),
-it uses old boto to spin up bees, with default region being us-east-1 (hence, in
-previous step, you created key pair in that region)
+For simplicity reasons we will be running Goad locally through docker, 
+so we avoid potential issues with IAM etc. 
 
 
 ```
-$ bees up -s 4 -k beeskey
+# Grab the endpoint url
+ENDPOINT_URL=$(aws cloudformation describe-stacks \
+        --stack-name CloudToolsMeetup-DEC19-WAF \
+        --query 'Stacks[0].Outputs[0].OutputValue' --out text)
+        
+# Run the load testing tool 
+goad -m GET --requests  500 \
+     --concurrency=10 \
+     --timeout=2 \
+     --timelimit=60 \
+     -H 'x-from: Melbourne-Meetup' $ENDPOINT_URL 
+     --run-docker
 ```
 
-You should see output similar to following
+Once the load testing tool has completed execution, you should see text like below
+at the end of the output
 
 ```
-New bees will use the "default" EC2 security group. Please note that port 22 (SSH) is not normally open on this group. You will need to use to the EC2 tools to open it before you will be able to attack.
-Connecting to the hive.
-Attempting to call up 4 bees.
-Waiting for bees to load their machine guns...
-.
-.
-.
-Bee i-0ed35b6ea3631cc28 is ready for the attack.
-.
-Bee i-01305be4e7722e501 is ready for the attack.
-.
-Bee i-0781d57768c7e07f6 is ready for the attack.
-.
-Bee i-0643feff021a471cc is ready for the attack.
-The swarm has assembled 4 bees.
+Overall
+
+   TotReqs   TotBytes    AvgTime    AvgReq/s  (post)unzip
+       500      25 kB     0.066s      134.66     6.8 kB/s
+   Slowest    Fastest   Timeouts  TotErrors
+    0.425s     0.046s          0          0
+HTTPStatus   Requests
+       200        500
 ```
+    
+### Verifying number of API requests. 
+
+To verify that API was actually hit, go to [CloudWatch metrics home page first](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#metricsV2:graph=~(view~'timeSeries~stacked~false~region~'us-east-2~stat~'Sum~period~300)
+
+As we want to see API Gateway metrics, select (AllMetrics/ApiGateway/ByApiName).
+Like on screenshot below, you should see "CloudToolsMeetup-DEC19-WAF" 
+Select "Count" for MetricName as we are interested only in total number of requests,
+then head of to "Graphed Metrics Tab". Selecting "SUM" for statistics like on 
+screenshot #2 should display total number of requests, which in this case
+should be 500. 
+
+
+#### Exerices for advanced users
+
+Try and see how many invocations of Lambda function
+`CloudToolsMeetup-DEC19-WAF-LambdaFunction-xxxx` is there in CloudWatch metrics. 
+
+
+
