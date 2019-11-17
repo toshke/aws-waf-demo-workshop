@@ -1,6 +1,11 @@
 ## Load test your API
 
-### Install BeesWithMachineguns
+### Install GoAd
+
+This tutorial assumes you are running Cloud9 w/Amazon Linux2, however
+if you are running this tutorial from Mac or Windows, head to 
+[GOAS website for download url](https://goad.io/#install)
+
 
 ```
 $ pip install beeswithmachineguns
