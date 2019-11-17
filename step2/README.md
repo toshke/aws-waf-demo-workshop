@@ -1,19 +1,19 @@
 ## Load test your API
 
-In this step you will be installing Goad, Go-written, AWS Lambda-powered 
+In this step you will be installing goad, Go-written, AWS Lambda-powered 
 website load testing tool. Once the tool is installed, you will use it
 to put some load onto the serverless API endpoint created in previous step. 
 As end result, you'll look at some CloudWatch metrics showing the results of load
 tesing. 
 
 
-### Install GoAd
+### Install goad
 
 This tutorial assumes you are running Cloud9 w/Amazon Linux2, however
 if you are running this tutorial from Mac or Windows, head to 
 [GOAS website for download url](https://goad.io/#install)
 
-Installing GOAD on Linux (Cloud9) - copy & Paste commands below into
+Installing goad on Linux (Cloud9) - copy & Paste commands below into
 your Cloud 9 instance
 
 ```
@@ -111,8 +111,8 @@ should be 500. (screenshot3)
 
 #### Exerices for advanced users
 
-Try and see how many invocations of Lambda function
+1. Try and see how many invocations of Lambda function
 `CloudToolsMeetup-DEC19-WAF-LambdaFunction-xxxx` is there in CloudWatch metrics. 
 
-
+2. Try running goad from Lambda functions, rather then from Container. 
 

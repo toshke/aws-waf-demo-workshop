@@ -1,10 +1,21 @@
-# aws-waf-demo-workshop
-
-Rely on Cloud9.
+# Aws WAF Workshop
 
 This workshop provides hands on experience with
-- Load testing and using tooling to attach/load test WebApplication
-- AWS WAF (WebApplication firewall)
+- Deploying Serverless API Endpoint using api gateway
+- Load testing HTTPS API Endpoint in Docker
+- Deploying WebApplicationFirewall (WAF) to protect the endpoint
+- Demonstrating the WAF blocking functionality
+
+## Prereqs
+
+This workshop makes assumptions on students running it through [Cloud9](https://aws.amazon.com/cloud9/) in `us-east-2` region. You may be able to run from Mac
+or Windows as well, and in other regions, though workshop steps are not optimised for such environment. 
+
+Cloud9 instance should have IAM Role with following permissions attached to it
+ - Manage lambda functions
+ - Manage IAM Roles
+
+### Workshop content
 
 ## Step 1
 
@@ -12,16 +23,13 @@ Deploy Simple WebAPI with ApiGateway and Lambdas
 
 ## Step 2
 
-Start bees with machine guns https://github.com/newsapps/beeswithmachineguns - let it run for full minute
-
-or try another framework
+Install [goad](https://github.com/goadapp/goad/). Load test the API. Look at the traffic data. 
 
 ## Step 3
 
-Look at the traffic data.
+Deploy the WAF that will detect Load testing header and block traffic. 
 
-## Step 3
+## Step 4
 
-Deploy WAF.  Create WAF rule to deny based on header
-Start bees with machine guns with custom header
-See WAF denying trafic.
+Run the load testing tool with and without the header. Look at 
+the traffic data. 
