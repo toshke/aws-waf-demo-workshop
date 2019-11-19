@@ -61,7 +61,7 @@ so we avoid potential issues with IAM etc.
 ```
 # Grab the endpoint url
 ENDPOINT_URL=$(aws cloudformation describe-stacks \
-        --stack-name CloudToolsMeetup-DEC19-WAF \
+        --stack-name CloudToolsMeetup-DEC19-API \
         --query 'Stacks[0].Outputs[0].OutputValue' --out text)
         
 # Run the load testing tool 
@@ -69,7 +69,7 @@ goad -m GET --requests  500 \
      --concurrency=10 \
      --timeout=2 \
      --timelimit=60 \
-     -H 'x-from: Melbourne-Meetup' $ENDPOINT_URL 
+     -H 'x-from: awsworkshop' $ENDPOINT_URL 
      --run-docker
 ```
 

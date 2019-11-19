@@ -17,7 +17,7 @@ For the demo, I've used *melbournecloudtoolsmeetups.$timestamp* for bucket
 name, but you can really use any bucket.
 
 ```
-export BUCKET_NAME=melbournecloudtoolsmeetups.`date +%s`
+export BUCKET_NAME=melbournecloudtoolsmeetup.`date +%s`
 aws s3 mb s3://${BUCKET_NAME}
 ```
 
@@ -32,7 +32,10 @@ For this you will use `sam package` command
 
 ```
 $ sam package --template-file=template.yaml --s3-bucket=$BUCKET_NAME --output-template=template.processed.yaml
+```
 
+You should see output like following
+```
 Successfully packaged artifacts and wrote output template to file template.processed.yaml.
 Execute the following command to deploy the packaged template
 aws cloudformation deploy --template-file /Users/nikolatosic/Development/projects/github/aws-waf-demo-workshop/step1/template.processed.yaml --stack-name <YOUR STACK NAME>
@@ -43,7 +46,7 @@ aws cloudformation deploy --template-file /Users/nikolatosic/Development/project
 In this step you deploy serverless API
 
 ```
-aws cloudformation deploy --template-file template.processed.yaml --stack-name CloudToolsMeetup-DEC19-WAF --capabilities CAPABILITY_IAM
+aws cloudformation deploy --template-file template.processed.yaml --stack-name CloudToolsMeetup-DEC19-API --capabilities CAPABILITY_IAM
 ```
 
 
@@ -54,7 +57,7 @@ you will need to read the endpoint form stack outputs first. Use command
 below to read your API Endpoint
 
 ```
-ENDPOINT_URL=$(aws cloudformation describe-stacks --stack-name CloudToolsMeetup-DEC19-WAF --query 'Stacks[0].Outputs[0].OutputValue' --out text)
+ENDPOINT_URL=$(aws cloudformation describe-stacks --stack-name CloudToolsMeetup-DEC19-API --query 'Stacks[0].Outputs[0].OutputValue' --out text)
 echo $ENDPOINT_URL
 curl -s $ENDPOINT_URL | jq
 ```
