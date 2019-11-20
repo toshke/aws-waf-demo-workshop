@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   MeetupHeaderRule:
-    Type: AWS::WAF::ByteMatchSet
+    Type: AWS::WAFRegional::ByteMatchSet
     Properties:
       Name: 'ByteMatch for Workshop header'
       ByteMatchTuples:
@@ -12,7 +12,7 @@ Resources:
           TextTransformation: LOWERCASE
           TargetString: awsworkshop
   BlackHatRule:
-    Type: AWS::WAF::ByteMatchSet
+    Type: AWS::WAFRegional::ByteMatchSet
     Properties:
       Name: 'ByteMatch for Workshop header'
       ByteMatchTuples:
@@ -23,7 +23,7 @@ Resources:
           TextTransformation: LOWERCASE
           TargetString: blackhathacker
   RuleMeetupRequest:
-    Type: AWS::WAF::Rule
+    Type: AWS::WAFRegional::Rule
     Properties:
       MetricName: MeetupRequest
       Name: MeetupRequest
@@ -32,7 +32,7 @@ Resources:
         Negated: False
         Type: ByteMatch
   RuleBlackHatRequest:
-    Type: AWS::WAF::Rule
+    Type: AWS::WAFRegional::Rule
     Properties:
       MetricName: BlackHatRequest
       Name: BlackHatRequest
@@ -40,17 +40,20 @@ Resources:
       - DataId: !Ref BlackHatRule
         Negated: False
         Type: ByteMatch
-  # MeetupAcl:
-  #   Type: AWS::WAF::WebACL
-  #   Properties:
-  #     DefaultAction:
-  #       Type: COUNT
-  #     MetricName: MeetupWorkshopRequests
-  #     Name: CountAndBlockRequests
-  #     Rules:
-  #      - Action: COUNT
-  #        Priority: 100
-  #        RuleId: !Ref RuleMeetupRequest
-  #      - Action: BLOCK
-  #        Priority: 200 
-  #        RuleId: !Ref RuleBlackHatRequest
+  MeetupAcl:
+    Type: AWS::WAFRegional::WebACL
+    Properties:
+      DefaultAction:
+        Type: 'ALLOW'
+      MetricName: MeetupWorkshopRequests
+      Name: 'WEB ACL For Meetup Workshop'
+      Rules:
+       - Action: 
+           Type: COUNT
+         Priority: 100
+         RuleId: !Ref RuleMeetupRequest
+       - Action: 
+           Type: BLOCK
+         Priority: 200 
+         RuleId: !Ref RuleBlackHatRequest
+    

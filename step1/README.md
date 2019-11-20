@@ -61,3 +61,15 @@ ENDPOINT_URL=$(aws cloudformation describe-stacks --stack-name CloudToolsMeetup-
 echo $ENDPOINT_URL
 curl -s $ENDPOINT_URL | jq
 ```
+
+You should see output as following, retrieving your basic API resource
+
+```
+https://9ecqet1mj2.execute-api.us-east-2.amazonaws.com/Prod/helloworld
+$ curl -s $ENDPOINT_URL | jq
+{
+  "Message": "Hello, World!",
+  "InMemoryCounter": 1
+}
+
+```
