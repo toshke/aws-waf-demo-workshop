@@ -35,7 +35,3 @@ $ aws cloudformation deploy --template-file template.yaml --stack-name CloudTool
 
 Go to [WAF Console to check for created WebACL and rules](https://console.aws.amazon.com/wafv2/home?region=us-east-2#/webacls)
 
-### Send some requests
-
-Using goad utility installed in previous steps, you'll be sending some valid
-allowed requests, and some black listed 'blachkat' requests

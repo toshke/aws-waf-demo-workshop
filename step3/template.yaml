@@ -56,4 +56,13 @@ Resources:
            Type: BLOCK
          Priority: 200 
          RuleId: !Ref RuleBlackHatRequest
-    
+  AclApiAssociation:
+    Type: AWS::WAFRegional::WebACLAssociation
+    Properties:
+      ResourceArn:
+        Fn::Join:
+         - ''
+         - - !Sub 'arn:aws:apigateway:${AWS::Region}::/restapis/'
+           -  !ImportValue 'AWSToolsAndProgrammingDEC19API'
+           - '/stages/Prod'
+      WebACLId: !Ref MeetupAcl
