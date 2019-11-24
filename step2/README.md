@@ -69,7 +69,7 @@ goad -m GET --requests  500 \
      --concurrency=10 \
      --timeout=2 \
      --timelimit=60 \
-     -H 'x-from: awsworkshop' $ENDPOINT_URL 
+     -H 'x-from: awsworkshop' $ENDPOINT_URL \
      --run-docker
 ```
 
