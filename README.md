@@ -1,4 +1,4 @@
-# Aws WAF Workshop
+# AWS WAF Workshop
 
 This workshop provides hands on experience with
 - Deploying Serverless API Endpoint using api gateway
@@ -52,5 +52,6 @@ recommended to have admin priveleges credentials
 
 [Remove All of the created resources](cleanup.md)
 
+Read more about WAF on [Official AWS Documentation pages](https://docs.aws.amazon.com/waf/latest/APIReference/Welcome.html)
 
 Thanks for taking your time to go through this workshop. 
