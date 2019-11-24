@@ -36,3 +36,14 @@ $ aws cloudformation deploy --template-file template.yaml --stack-name CloudTool
 
 Go to [WAF Console to check for created WebACL and rules](https://console.aws.amazon.com/wafv2/home?region=us-east-2#/webacls)
 
+
+#### Created Web ACL 
+<img width="1094" alt="Screenshot 2019-11-24 22 21 23" src="https://user-images.githubusercontent.com/1170273/69493896-dd966f00-0f08-11ea-84f8-6501af4f23a4.png">
+
+#### Created Rules and association between WebACL and API Gateway
+
+<img width="1056" alt="Screenshot 2019-11-24 22 21 41" src="https://user-images.githubusercontent.com/1170273/69493897-df603280-0f08-11ea-9f36-86446f0ce78e.png">
+
+
+
+[>> Go to step 4 >> ](../step4/README.md)
