@@ -29,6 +29,7 @@ There will be 2 rules deployed:
 
 
 ```
+$ cd step3
 $ aws cloudformation deploy --template-file template.yaml --stack-name CloudToolsMeetup-DEC19-WAF
 
 ```

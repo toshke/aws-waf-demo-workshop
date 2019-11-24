@@ -17,6 +17,7 @@ For the demo, I've used *melbournecloudtoolsmeetups.$timestamp* for bucket
 name, but you can really use any bucket.
 
 ```
+
 export BUCKET_NAME=melbournecloudtoolsmeetup.`date +%s`
 aws s3 mb s3://${BUCKET_NAME}
 ```
@@ -31,6 +32,7 @@ to code that has been uploaded to S3 bucket created in previous step.
 For this you will use `sam package` command
 
 ```
+$ cd step1
 $ sam package --template-file=template.yaml --s3-bucket=$BUCKET_NAME --output-template=template.processed.yaml
 ```
 
@@ -73,3 +75,10 @@ $ curl -s $ENDPOINT_URL | jq
 }
 
 ```
+
+
+Congratulations, you have successfully deployed
+serverless API in AWS and Completed step1 of this
+workshop. 
+
+[>> Go to step 2 >> ](../step2/README.md)

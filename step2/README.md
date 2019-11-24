@@ -1,4 +1,4 @@
-## Load test your API
+## Step 2 - Load test your API
 
 In this step you will be installing goad, Go-written, AWS Lambda-powered 
 website load testing tool. Once the tool is installed, you will use it
@@ -109,10 +109,14 @@ should be 500. (screenshot3)
 <img width="246" alt="Screenshot 2019-11-17 19 39 10" src="https://user-images.githubusercontent.com/1170273/69005190-904b5800-0972-11ea-9723-45a63479e3b7.png">
 
 
-#### Exerices for advanced users
+#### Extras (try this at home)
 
 1. Try and see how many invocations of Lambda function
 `CloudToolsMeetup-DEC19-WAF-LambdaFunction-xxxx` is there in CloudWatch metrics. 
 
-2. Try running goad from Lambda functions, rather then from Container. 
+2. Try running goad from Lambda functions, rather then from Container (Tip: You may need to compile goad from source
+for this one to work)
 
+
+
+[>> Go to step 3 >> ](../step3/README.md)
