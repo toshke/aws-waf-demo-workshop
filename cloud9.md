@@ -50,3 +50,5 @@ Cloud9 instance, select Instance Settings -> Attach / Replace IAM Role, then sel
 
 
 <img width="1068" alt="Screenshot 2019-11-24 21 45 49" src="https://user-images.githubusercontent.com/1170273/69493596-9efeb580-0f04-11ea-8fd6-16a6656171c7.png">
+
+[>> Workshop home page >> ](../README.md)
