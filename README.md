@@ -9,7 +9,6 @@ on header
 
 ## Prereqs
 
-You can find [instrunctions here on how to setup Cloud9](cloud9.md)
 
 This workshop makes assumptions on students running it using [Cloud9](https://aws.amazon.com/cloud9/) in `us-east-2` region. You may be able to run from Mac
 or Windows as well, and in other regions, though workshop steps are not optimised for such environment. 
@@ -27,6 +26,8 @@ Cloud9 instance should have IAM Role with following permissions attached to it
 
 For the simplicity of the workshop conduction, it is 
 recommended to have admin priveleges credentials
+
+You can find [instructions here on how to setup Cloud9](cloud9.md)
 
 
 ### Workshop content
