@@ -49,6 +49,10 @@ You can find [instructions here on how to setup Cloud9](cloud9.md)
 [Run the load testing tool with and without the header. Look at metrics for Web Application Firewall](step4/README.md) 
 
 
+## Too easy?
+
+If you have come this far and felt that was too easy, you can [try out doing some exercises for more advanced users](advanced.md)
+
 ## Cleanup
 
 [Remove All of the created resources](cleanup.md)
