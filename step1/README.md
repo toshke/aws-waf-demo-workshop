@@ -61,18 +61,19 @@ below to read your API Endpoint
 ```
 ENDPOINT_URL=$(aws cloudformation describe-stacks --stack-name CloudToolsMeetup-DEC19-API --query 'Stacks[0].Outputs[0].OutputValue' --out text)
 echo $ENDPOINT_URL
-curl -s $ENDPOINT_URL | jq
+sudo yum -y install jq && curl -s $ENDPOINT_URL
 ```
 
 You should see output as following, retrieving your basic API resource
 
 ```
-https://9ecqet1mj2.execute-api.us-east-2.amazonaws.com/Prod/helloworld
-$ curl -s $ENDPOINT_URL | jq
-{
-  "Message": "Hello, World!",
-  "InMemoryCounter": 1
-}
+
+$ ENDPOINT_URL=$(aws cloudformation describe-stacks --stack-name CloudToolsMeetup-DEC19-API --query 'Stacks[0].Outputs[0].OutputValue' --out text)
+$ sudo yum -y install jq && curl -s $ENDPOINT_URL
+Loaded plugins: priorities, update-motd, upgrade-helper
+<< SKIPPING PACKAGE INSTALL OUTPUT >> 
+Nothing to do
+{"Message": "Hello, World!", "InMemoryCounter": 1}
 
 ```
 
