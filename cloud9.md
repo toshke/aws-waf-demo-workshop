@@ -1,6 +1,8 @@
 ## Setting up Cloud9 for this workshop
 
-**NOTE:** Allowing admin permissions 
+**NOTE 1:** If running `aws sts get-caller-identity` in Cloud9 terminal window gives you response such as `arn:aws:iam::123456789012:root` as your identity - you are already running Cloud9 from your root account, so you can skip any instructions below. Additionally, you can [read on using IAM for least privileged access (see NOTE2 Below)](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html?)
+
+**NOTE 2:** Allowing admin permissions 
 should be highly discouraged in any enterpise
 or other envionrment. For the sake of simplicity 
 this workshop step instructs to allow admin permissions
