@@ -4,6 +4,12 @@ In this step, you will deploy serverless API, utilising AWS resourcesLambda
 Functions and API Gateway. To do so, you will use [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-command-reference.html) to package,
 and deploy SAM CloudFormation template.
 
+Before doing anything else, make sure you clone the repo into Cloud9 workspace
+
+```
+git clone https://github.com/toshke/aws-waf-demo-workshop.git
+```
+
 **Important** Set your region to `us-east-2`, or region where your Cloud9
 runs. You can do so by exporting `AWS_DEFAULT_REGION` variable, e.g.
 
