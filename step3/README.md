@@ -36,6 +36,8 @@ $ aws cloudformation deploy --template-file template.yaml --stack-name CloudTool
 
 Go to [WAF Console to check for created WebACL and rules](https://console.aws.amazon.com/wafv2/home?region=us-east-2#/webacls)
 
+Please note that if you're not following the link above and you go to WAF console directly you're landing on 'New AWS WAF', switch to 'AWS WAF Classic' to find your new created WAF resources by clicking "Switch to AWS WAF Clasic" link at left-pane menu.
+
 
 #### Created Web ACL 
 <img width="1094" alt="Screenshot 2019-11-24 22 21 23" src="https://user-images.githubusercontent.com/1170273/69493896-dd966f00-0f08-11ea-84f8-6501af4f23a4.png">
