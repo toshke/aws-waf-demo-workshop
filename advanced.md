@@ -3,7 +3,7 @@
 These tasks are left open ended, without perspective way of
 implementing the solution. Feel free to play around, through
 the AWS console or provisioning tools such as CloudFormation,
-Terraform, AWS CDK etc. Purpose of the tasks is to give ideas for self paced and exploratory practice of using AWS WAF tool
+Terraform, AWS CDK etc. Purpose of the tasks is to give ideas for self paced and exploratory practice of using AWS WAF service.
 
 ### Payload size.
 
