@@ -4,14 +4,14 @@ This workshop provides hands on experience with
 - Deploying Serverless API Endpoint using api gateway
 - Load testing HTTPS API Endpoint using goad utility and coker
 - Deploying WebApplicationFirewall (WAF) to protect the serverless api endpoint
-- Demonstrate the WAF request blocking functionality based 
+- Demonstrate the WAF request blocking functionality based
 on header
 
 ## Prereqs
 
 
 This workshop makes assumptions on students running it using [Cloud9](https://aws.amazon.com/cloud9/) in `us-east-2` region. You may be able to run from Mac
-or Windows as well, and in other regions, though workshop steps are not optimised for such environment. 
+or Windows as well, and in other regions, though workshop steps are not optimised for such environment.
 
 Also, all of the step instructions are relying
 on the fact that you are positioned within that steps
@@ -24,7 +24,7 @@ Cloud9 instance should have IAM Role with following permissions attached to it
  - Manage CloudWatch resources
  - Manage WAF Regional resources
 
-For the simplicity of the workshop conduction, it is 
+For the simplicity of the workshop conduction, it is
 recommended to have admin priveleges credentials
 
 You can find [instructions here on how to setup Cloud9](cloud9.md)
@@ -32,7 +32,7 @@ You can find [instructions here on how to setup Cloud9](cloud9.md)
 
 ### Workshop content
 
-## Step 1 
+## Step 1
 
 [Deploy Simple WebAPI with ApiGateway and Lambdas](step1/README.md)
 
@@ -46,12 +46,12 @@ You can find [instructions here on how to setup Cloud9](cloud9.md)
 
 ## Step 4
 
-[Run the load testing tool with and without the header. Look at metrics for Web Application Firewall](step4/README.md) 
+[Run the load testing tool with and without the header. Look at metrics for Web Application Firewall](step4/README.md)
 
 
 ## Too easy?
 
-If you have come this far and felt that was too easy, you can [try out doing some exercises for more advanced users](advanced.md)
+If you have come this far and felt that was too easy, you can [try out some more complex tasks](advanced.md)
 
 ## Cleanup
 
@@ -59,4 +59,4 @@ If you have come this far and felt that was too easy, you can [try out doing som
 
 Read more about WAF on [Official AWS Documentation pages](https://docs.aws.amazon.com/waf/latest/APIReference/Welcome.html)
 
-Thanks for taking your time to go through this workshop. 
+Thanks for taking your time to go through this workshop.
